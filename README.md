@@ -1,5 +1,7 @@
 # react-poptart
 
+[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/ci.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/ci.yml)
+
 ## Overview
 
 The `react-poptart` an easy-to-use notification system for React apps. It includes features like multiple animations, auto-dismiss, progress bars, and flexible theming.
