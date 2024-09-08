@@ -1,6 +1,6 @@
 # react-poptart
 
-[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/ci.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/ci.yml)
+[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml)
 
 ## Overview
 
