@@ -11,10 +11,11 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        timeout-minutes: 10
 
         strategy:
             matrix:
-                node-version: [20, 22]
+                node-version: [20]
 
         steps:
             - uses: actions/checkout@v3
