@@ -2,6 +2,10 @@
     "compilerOptions": {
         "target": "es5",
         "module": "esnext",
+        "lib": [
+            "dom",
+            "ES2015",
+        ],
         "declaration": true,
         "declarationDir": "dist/types",
         "outDir": "dist",

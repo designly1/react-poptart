@@ -68,7 +68,6 @@ export function generateSecureString(length: number): string {
 		for (let i = 0; i < randomBytes.length && secureString.length < length; i++) {
 			const randomByte = randomBytes[i];
 
-			// Only use values that map to the characters in the chars array
 			if (randomByte < maxByte) {
 				secureString += chars[randomByte % chars.length];
 			}
@@ -76,4 +75,29 @@ export function generateSecureString(length: number): string {
 	}
 
 	return secureString;
+}
+
+export function isObject(item: any): item is object {
+	return item && typeof item === 'object' && !Array.isArray(item);
+}
+
+export function deepMerge<T extends object, T2 extends object>(target: T, ...sources: T2[]): T {
+	if (!sources.length) return target;
+
+	const source = sources.shift();
+
+	if (source) {
+		Object.keys(source).forEach(key => {
+			const targetValue = (target as any)[key];
+			const sourceValue = (source as any)[key];
+
+			if (isObject(targetValue) && isObject(sourceValue)) {
+				(target as any)[key] = deepMerge({ ...targetValue }, sourceValue);
+			} else {
+				(target as any)[key] = sourceValue;
+			}
+		});
+	}
+
+	return deepMerge(target, ...sources);
 }

@@ -1,19 +1,25 @@
 import React, { createContext, useContext, useState } from 'react';
 import Matrix from './Matrix';
 
-import merge from 'lodash.merge';
-import { getContrastColor, generateSecureString } from './helpers';
+import { getContrastColor, generateSecureString, deepMerge } from './helpers';
 
 import { defaultConfig } from './constants';
 
-import type { I_PoptartProviderProps, I_PoptartContext, I_PoptartItem, I_PoptartProps } from './types';
+import type {
+	I_PoptartProviderProps,
+	I_PoptartContext,
+	I_PoptartItem,
+	I_PoptartProps,
+	I_PoptartConfig,
+	I_PoptartUserConfig,
+} from './types';
 
 // Create the Poptart context
 const PoptartContext = createContext<I_PoptartContext | undefined>(undefined);
 
 export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, config: userConfig }) => {
 	// Merge the default options with the user options
-	const config = merge({}, defaultConfig, userConfig);
+	const config = deepMerge<I_PoptartConfig, I_PoptartUserConfig>(defaultConfig, userConfig || {});
 
 	// State
 	const [poptarts, setPoptarts] = useState<I_PoptartItem[]>([]);

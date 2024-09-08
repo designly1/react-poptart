@@ -1,0 +1,32 @@
+
+> react-poptart@1.0.2 test D:\GitHub\react-poptart
+> jest
+
+FAIL src/__tests__/components.jsx (6.051 s)
+  PoptartProvider
+    √ renders the provider and can push a poptart (81 ms)
+    √ dismisses a poptart (22 ms)
+    × correctly sets the duration and auto-dismisses (5001 ms)
+
+  ● PoptartProvider › correctly sets the duration and auto-dismisses
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 82 |[39m 	})[33m;[39m
+     [90m 83 |[39m
+    [31m[1m>[22m[39m[90m 84 |[39m 	it([32m'correctly sets the duration and auto-dismisses'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m    |[39m 	[31m[1m^[22m[39m
+     [90m 85 |[39m 		render(
+     [90m 86 |[39m 			[33m<[39m[33mPoptartProvider[39m[33m>[39m
+     [90m 87 |[39m 				[33m<[39m[33mTestComponent[39m [33m/[39m[33m>[39m[0m
+
+      at it (src/__tests__/components.jsx:84:2)
+      at Object.describe (src/__tests__/components.jsx:38:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        6.598 s, estimated 7 s
+Ran all test suites.
+ ELIFECYCLE  Test failed. See above for more details.
