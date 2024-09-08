@@ -36,4 +36,12 @@ export default {
 		terser(), // Minify the output
 	],
 	external: ['react', 'react-dom'],
+	onwarn: (warning, warn) => {
+		// Suppress specific warnings or all warnings if desired
+		if (warning.code === 'CIRCULAR_DEPENDENCY') {
+			return;
+		}
+		// Pass through other warnings
+		warn(warning);
+	},
 };
