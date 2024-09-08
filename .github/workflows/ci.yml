@@ -3,10 +3,10 @@ name: Node.js CI
 on:
     push:
         branches:
-            - main
+            - master
     pull_request:
         branches:
-            - main
+            - master
 
 jobs:
     build:
@@ -14,7 +14,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14, 16, 18] # Test on different Node.js versions
+                node-version: [14, 16, 18]
 
         steps:
             - uses: actions/checkout@v3
