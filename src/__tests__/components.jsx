@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { PoptartProvider, usePoptart } from '../../dist/esm/index';
+import { PoptartProvider, usePoptart } from 'dist/esm/index';
 
 // Mock helper functions
 jest.mock('../helpers', () => ({
