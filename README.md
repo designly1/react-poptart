@@ -1,7 +1,6 @@
 # react-poptart
 
-[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml)  
-[![npm version](https://badge.fury.io/js/react-poptart.svg)](https://badge.fury.io/js/react-poptart)
+[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml) [![npm version](https://badge.fury.io/js/react-poptart.svg)](https://badge.fury.io/js/react-poptart)
 
 [Changelog](https://github.com/designly1/react-poptart/blob/master/CHANGELOG.md)
 
@@ -69,13 +68,13 @@ const NotificationButton = () => {
 
 | Property           | Type     | Default      | Description                                                             |
 | ------------------ | -------- | ------------ | ----------------------------------------------------------------------- |
-| `type`             | string   | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
+| `type?`            | string   | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
 | `message`          | string   | N/A          | The message displayed inside the notification                            |
-| `width`            | string   | `'450px'`    | Width of the notification                                                |
-| `duration`         | number   | `5000`       | How long the notification stays visible (in milliseconds)                |
-| `animation`        | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
-| `animationDuration`| number   | `0.6`        | Animation duration in seconds                                            |
-| `onClick`          | function | `undefined`  | Callback function for when a Poptart is clicked                           |
+| `width?`           | string   | `'450px'`    | Width of the notification                                                |
+| `duration?`        | number   | `5000`       | How long the notification stays visible (in milliseconds)                |
+| `animation?`       | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
+| `animationDuration?`| number  | `0.6`        | Animation duration in seconds                                            |
+| `onClick?`         | function | `undefined`  | Callback function for when a Poptart is clicked                           |
 
 ## Alerts Usage
 
@@ -115,17 +114,17 @@ const AlertButton = () => {
 | ------------------------ | -------- | ------------- | ---------------------------------------------------------------------- |
 | `title`                  | string   | N/A           | The title of the alert                                                 |
 | `message`                | string   | N/A           | The message displayed inside the alert                                 |
-| `confirmButtonLabel`      | string   | `'Ok'`        | The label for the confirm button                                       |
-| `cancelButtonLabel`       | string   | `'Cancel'`    | The label for the cancel button                                        |
-| `onConfirm`              | function | N/A           | Callback function when the confirm button is pressed                   |
-| `onCancel`               | function | N/A           | Callback function when the cancel button is pressed                    |
-| `showCancelButton`       | boolean  | `true`        | Whether to show the cancel button                                      |
-| `showConfirmButton`      | boolean  | `true`        | Whether to show the confirm button                                     |
-| `defaultBackgroundColor` | string   | `#F5F5F5`     | Background color of the alert                                          |
-| `defaultFontColor`       | string   | `#000`        | Font color of the alert text                                           |
-| `defaultAnimation`       | string   | `'slideFromBottom'` | Animation for the alert display                                   |
-| `defaultAnimationDuration`| number  | `0.25`        | Animation duration in seconds                                          |
-| `allowClickOffDismissal` | boolean  | `true`        | Whether clicking outside the alert dismisses it                        |
+| `confirmButtonLabel?`    | string   | `'Ok'`        | The label for the confirm button                                       |
+| `cancelButtonLabel?`     | string   | `'Cancel'`    | The label for the cancel button                                        |
+| `onConfirm?`             | function | N/A           | Callback function when the confirm button is pressed                   |
+| `onCancel?`              | function | N/A           | Callback function when the cancel button is pressed                    |
+| `showCancelButton?`      | boolean  | `true`        | Whether to show the cancel button                                      |
+| `showConfirmButton?`     | boolean  | `true`        | Whether to show the confirm button                                     |
+| `defaultBackgroundColor?`| string   | `#F5F5F5`     | Background color of the alert                                          |
+| `defaultFontColor?`      | string   | `#000`        | Font color of the alert text                                           |
+| `defaultAnimation?`      | string   | `'slideFromBottom'` | Animation for the alert display                                   |
+| `defaultAnimationDuration?`| number | `0.25`        | Animation duration in seconds                                          |
+| `allowClickOffDismissal?`| boolean  | `true`        | Whether clicking outside the alert dismisses it                        |
 
 ## Alert Inputs
 
@@ -165,10 +164,10 @@ const InputAlertButton = () => {
 
 | Property                 | Type     | Default     | Description                                 |
 | ------------------------ | -------- | ----------- | ------------------------------------------- |
-| `type`                   | string   | `text`      | The type of input (e.g., `text`, `email`)   |
-| `placeholder`            | string   | `""`        | Placeholder text                            |
-| `required`               | boolean  | `false`     | Whether the input is required               |
-| `validationCallback`     | function | `undefined` | Callback for custom input validation        |
+| `type?`                  | string   | `text`      | The type of input (e.g., `text`, `email`)   |
+| `placeholder?`           | string   | `""`        | Placeholder text                            |
+| `required?`              | boolean  | `false`     | Whether the input is required               |
+| `validationCallback?`    | function | `undefined` | Callback for custom input validation        |
 
 ## Alert Inputs with Custom Validation
 
@@ -209,9 +208,7 @@ const CustomValidationAlertButton = () => {
     });
   };
 
-  return <button onClick={handleAlertClick}>Show Custom Validation Alert</button
-
->;
+  return <button onClick={handleAlertClick}>Show Custom Validation Alert</button>;
 };
 ```
 
@@ -237,7 +234,9 @@ export const defaultConfig: I_PoptartConfig = {
 		textLight: '#f9f9f9',
 		textDark: '#171717',
 	},
-	styleOverrides: {
+	styleOverrides:
+
+ {
 		container: {},
 		poptart: {},
 		progressBar: {},
