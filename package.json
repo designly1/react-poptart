@@ -1,7 +1,12 @@
 {
   "name": "react-poptart",
   "description": "A simple and elegant notification toaster for React.js",
-  "version": "1.0.7",
+  "version": "1.0.8",
+  "homepage": "https://react-poptart.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/designly1/react-poptart.git"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/types/index.d.ts",
