@@ -20,8 +20,8 @@ export default function Alert(props: Props) {
 	const fontColor = alert.fontColor || config.alerts.defaultFontColor;
 	const animation = alert.animation || config.alerts.defaultAnimation;
 	const animationDuration = alert.animationDuration || config.alerts.defaultAnimationDuration;
-	const showCancelButton = alert.showCancelButton !== undefined ? alert.showCancelButton : true;
-	const showConfirmButton = alert.showConfirmButton !== undefined ? alert.showConfirmButton : true;
+	const showCancelButton = alert.showCancelButton !== undefined ? alert.showCancelButton : config.alerts.defaultShowCancelButton;
+	const showConfirmButton = alert.showConfirmButton !== undefined ? alert.showConfirmButton : config.alerts.defaultShowConfirmButton;
 
 	const alertStyles: React.CSSProperties = {
 		pointerEvents: 'auto',
