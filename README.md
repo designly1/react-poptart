@@ -71,13 +71,11 @@ const NotificationButton = () => {
 | ---------------- | -------- | --------- | ----------------------------------------------------------------------- |
 | `type`           | string   | `'info'`  | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
 | `message`        | string   | N/A       | The message displayed inside the notification                            |
+| `width`          | string   | `'450px'` | Width of the notification                                                |
 | `duration`       | number   | `5000`    | How long the notification stays visible (in milliseconds)                |
 | `animation`      | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
 | `animationDuration` | number | `0.6`     | Animation duration in seconds                                            |
-| `align`          | string   | `'br'`    | Alignment of the notification container. Options: `'tl'`, `'tc'`, `'tr'`, `'bl'`, `'bc'`, `'br'` |
-| `width`          | string   | `'450px'` | Width of the notification                                                |
-| `progressBar`    | boolean  | `true`    | Whether to show a progress bar                                           |
-| `zIndex`         | number   | `10`      | Z-index of the notification container                                    |
+| `onClick`        | function | `undefined` | Callback functon for when a poptar is clicked                           |
 
 ## Alerts Usage
 
