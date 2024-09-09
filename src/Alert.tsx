@@ -20,8 +20,10 @@ export default function Alert(props: Props) {
 	const fontColor = alert.fontColor || config.alerts.defaultFontColor;
 	const animation = alert.animation || config.alerts.defaultAnimation;
 	const animationDuration = alert.animationDuration || config.alerts.defaultAnimationDuration;
-	const showCancelButton = alert.showCancelButton !== undefined ? alert.showCancelButton : config.alerts.defaultShowCancelButton;
-	const showConfirmButton = alert.showConfirmButton !== undefined ? alert.showConfirmButton : config.alerts.defaultShowConfirmButton;
+	const showCancelButton =
+		alert.showCancelButton !== undefined ? alert.showCancelButton : config.alerts.defaultShowCancelButton;
+	const showConfirmButton =
+		alert.showConfirmButton !== undefined ? alert.showConfirmButton : config.alerts.defaultShowConfirmButton;
 
 	const alertStyles: React.CSSProperties = {
 		pointerEvents: 'auto',
@@ -119,7 +121,7 @@ export default function Alert(props: Props) {
 					gap: '16px',
 				}}
 			>
-				{showCancelButton ? (
+				{showConfirmButton ? (
 					<button
 						style={{
 							...buttonBaseStyles,
@@ -131,7 +133,7 @@ export default function Alert(props: Props) {
 						{config.alerts.defaultConfirmButtonLabel}
 					</button>
 				) : null}
-				{showConfirmButton ? (
+				{showCancelButton ? (
 					<button
 						style={{
 							...buttonBaseStyles,
