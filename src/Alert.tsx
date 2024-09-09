@@ -69,8 +69,8 @@ export default function Alert(props: Props) {
 	});
 
 	const handleCancel = () => {
-		if (alert.confirmButtonCallback) {
-			alert.confirmButtonCallback();
+		if (alert.cancelButtonCallback) {
+			alert.cancelButtonCallback();
 		} else {
 			dismissAlert();
 		}
