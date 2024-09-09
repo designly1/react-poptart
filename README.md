@@ -1,6 +1,6 @@
 # react-poptart
 
-[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml)
+[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml)  
 [![npm version](https://badge.fury.io/js/react-poptart.svg)](https://badge.fury.io/js/react-poptart)
 
 [Changelog](https://github.com/designly1/react-poptart/blob/master/CHANGELOG.md)
@@ -67,15 +67,15 @@ const NotificationButton = () => {
 
 ## Poptart Properties
 
-| Property         | Type     | Default   | Description                                                             |
-| ---------------- | -------- | --------- | ----------------------------------------------------------------------- |
-| `type`           | string   | `'info'`  | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
-| `message`        | string   | N/A       | The message displayed inside the notification                            |
-| `width`          | string   | `'450px'` | Width of the notification                                                |
-| `duration`       | number   | `5000`    | How long the notification stays visible (in milliseconds)                |
-| `animation`      | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
-| `animationDuration` | number | `0.6`     | Animation duration in seconds                                            |
-| `onClick`        | function | `undefined` | Callback functon for when a poptar is clicked                           |
+| Property           | Type     | Default      | Description                                                             |
+| ------------------ | -------- | ------------ | ----------------------------------------------------------------------- |
+| `type`             | string   | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
+| `message`          | string   | N/A          | The message displayed inside the notification                            |
+| `width`            | string   | `'450px'`    | Width of the notification                                                |
+| `duration`         | number   | `5000`       | How long the notification stays visible (in milliseconds)                |
+| `animation`        | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
+| `animationDuration`| number   | `0.6`        | Animation duration in seconds                                            |
+| `onClick`          | function | `undefined`  | Callback function for when a Poptart is clicked                           |
 
 ## Alerts Usage
 
@@ -111,21 +111,21 @@ const AlertButton = () => {
 
 ## Alert Properties
 
-| Property                 | Type     | Default   | Description                                                            |
-| ------------------------ | -------- | --------- | ---------------------------------------------------------------------- |
-| `title`                  | string   | N/A       | The title of the alert                                                 |
-| `message`                | string   | N/A       | The message displayed inside the alert                                 |
-| `confirmButtonLabel`      | string   | `'Ok'`    | The label for the confirm button                                       |
-| `cancelButtonLabel`       | string   | `'Cancel'`| The label for the cancel button                                        |
-| `onConfirm`              | function | N/A       | Callback function when the confirm button is pressed                   |
-| `onCancel`               | function | N/A       | Callback function when the cancel button is pressed                    |
-| `showCancelButton`       | boolean  | `true`    | Whether to show the cancel button                                      |
-| `showConfirmButton`      | boolean  | `true`    | Whether to show the confirm button                                     |
-| `defaultBackgroundColor` | string   | `#F5F5F5` | Background color of the alert                                          |
-| `defaultFontColor`       | string   | `#000`    | Font color of the alert text                                           |
-| `defaultAnimation`       | string   | `'slideFromBottom'` | Animation for the alert display                                       |
-| `defaultAnimationDuration` | number  | `0.25`    | Animation duration in seconds                                          |
-| `allowClickOffDismissal` | boolean  | `true`    | Whether clicking outside the alert dismisses it                        |
+| Property                 | Type     | Default       | Description                                                            |
+| ------------------------ | -------- | ------------- | ---------------------------------------------------------------------- |
+| `title`                  | string   | N/A           | The title of the alert                                                 |
+| `message`                | string   | N/A           | The message displayed inside the alert                                 |
+| `confirmButtonLabel`      | string   | `'Ok'`        | The label for the confirm button                                       |
+| `cancelButtonLabel`       | string   | `'Cancel'`    | The label for the cancel button                                        |
+| `onConfirm`              | function | N/A           | Callback function when the confirm button is pressed                   |
+| `onCancel`               | function | N/A           | Callback function when the cancel button is pressed                    |
+| `showCancelButton`       | boolean  | `true`        | Whether to show the cancel button                                      |
+| `showConfirmButton`      | boolean  | `true`        | Whether to show the confirm button                                     |
+| `defaultBackgroundColor` | string   | `#F5F5F5`     | Background color of the alert                                          |
+| `defaultFontColor`       | string   | `#000`        | Font color of the alert text                                           |
+| `defaultAnimation`       | string   | `'slideFromBottom'` | Animation for the alert display                                   |
+| `defaultAnimationDuration`| number  | `0.25`        | Animation duration in seconds                                          |
+| `allowClickOffDismissal` | boolean  | `true`        | Whether clicking outside the alert dismisses it                        |
 
 ## Alert Inputs
 
@@ -216,11 +216,11 @@ const CustomValidationAlertButton = () => {
         console.log('Valid input:', value);
       },
     });
-
-
   };
 
-  return <button onClick={handleAlertClick}>Show Custom Validation Alert</button>;
+  return <button onClick={handleAlertClick}>Show Custom Validation Alert</button
+
+>;
 };
 ```
 
@@ -229,6 +229,82 @@ const CustomValidationAlertButton = () => {
 1. The `validationCallback` function is passed to the alert input.
 2. If the input is valid, the callback returns `true`.
 3. If the input is invalid, the callback returns a string which will be displayed as an error message below the input field.
+
+## Default Configuration
+
+Below is the default configuration for `react-poptart`. You can override these settings by passing a custom configuration object to the `PoptartProvider`.
+
+```tsx
+import { I_PoptartConfig } from '.';
+
+export const defaultConfig: I_PoptartConfig = {
+	colors: {
+		success: '#229645',
+		error: '#e71b44',
+		warning: '#ffdc2e',
+		info: '#1FA2FF',
+		textLight: '#f9f9f9',
+		textDark: '#171717',
+	},
+	styleOverrides: {
+		container: {},
+		poptart: {},
+		progressBar: {},
+		alertContainer: {},
+		alert: {},
+	},
+	defaultAlign: 'br',
+	defaultType: 'info',
+	defaultDuration: 5000,
+	defaultWidth: '450px',
+	defaultAnimation: 'bounceIn',
+	defaultAnimationDuration: 0.6,
+	fontSize: 16,
+	iconSizeFactor: 2.5,
+	progressBar: {
+		lightColor: '#D6D6D6',
+		darkColor: '#454545',
+		height: 5,
+	},
+	contrastThreshold: 0.32,
+	paddingX: 20,
+	paddingY: 16,
+	zIndex: 10,
+	alerts: {
+		defaultWidth: '800px',
+		paddingX: 30,
+		paddingY: 26,
+		borderRadius: 10,
+		defaultType: 'info',
+		defaultBackgroundColor: '#ffffff',
+		defaultFontColor: '#000',
+		defaultFontSize: 20,
+		defaultTitleFontSize: 28,
+		iconSizeFactor: 2,
+		borderWidth: 3,
+		defaultConfirmButtonColor: '#2d2d2d',
+		defaultCancelButtonColor: '#6B6B6B',
+		defaultConfirmButtonLabel: 'Ok',
+		defaultCancelButtonLabel: 'Cancel',
+		defaultShowCancelButton: false,
+		defaultShowConfirmButton: true,
+		defaultAnimation: 'slideFromBottom',
+		defaultAnimationDuration: 0.25,
+		allowClickOffDismissal: true,
+		input: {
+			backgroundColor: '#fcfcfcac',
+			fontColor: '#000',
+			borderRadius: 5,
+			borderWidth: 1,
+			paddingX: 10,
+			paddingY: 8,
+			maxWidth: '70%',
+			errorFeedbackColor: '#d12c2c',
+			placeholderColor: '#a0a0a0',
+		},
+	},
+};
+```
 
 ## Dismissing Alerts
 
