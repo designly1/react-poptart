@@ -161,7 +161,7 @@ const InputAlertButton = () => {
 };
 ```
 
-### Input Alert Properties
+### Alert Input Props
 
 | Property                 | Type     | Default     | Description                                 |
 | ------------------------ | -------- | ----------- | ------------------------------------------- |
@@ -169,15 +169,6 @@ const InputAlertButton = () => {
 | `placeholder`            | string   | `""`        | Placeholder text                            |
 | `required`               | boolean  | `false`     | Whether the input is required               |
 | `validationCallback`     | function | `undefined` | Callback for custom input validation        |
-| `backgroundColor`        | string   | `#fcfcfcac` | Background color of the input               |
-| `fontColor`              | string   | `#000`      | Font color of the input text                |
-| `borderRadius`           | number   | `5`         | Border radius of the input                  |
-| `borderWidth`            | number   | `1`         | Border width of the input                   |
-| `paddingX`               | number   | `10`        | Horizontal padding inside the input         |
-| `paddingY`               | number   | `8`         | Vertical padding inside the input           |
-| `maxWidth`               | string   | `'70%'`     | Maximum width of the input                  |
-| `errorFeedbackColor`     | string   | `#d12c2c`   | Color for error messages                    |
-| `placeholderColor`       | string   | `#a0a0a0`   | Color of the placeholder text               |
 
 ## Alert Inputs with Custom Validation
 
