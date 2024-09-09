@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { usePoptart } from './Provider';
 import { getContrastColor } from './helpers';
+
+import { I_PoptartConfig } from './types';
 
 interface ProgressBarProps {
 	progress: number;
 	height: number;
 	backgroundColor: string;
+	config: I_PoptartConfig;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ progress, height, backgroundColor }) => {
-	const { config } = usePoptart();
-
+const ProgressBar: React.FC<ProgressBarProps> = ({ progress, height, backgroundColor, config }) => {
 	const color = getContrastColor({
 		backgroundColor,
 		lightColor: config.progressBar.lightColor,

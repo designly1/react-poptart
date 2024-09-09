@@ -2,15 +2,15 @@ import React from 'react';
 import Icon from './Icon';
 import ProgressBar from './ProgressBar';
 
-import { usePoptart } from './Provider';
+import type { I_PoptartItem, I_PoptartConfig } from './types';
 
-import type { I_PoptartItem } from './types';
-
-interface Props extends I_PoptartItem {}
+interface Props extends I_PoptartItem {
+	config: I_PoptartConfig;
+	dismiss: (id: string) => void;
+}
 
 const Poptart: React.FC<Props> = superProps => {
-	const { props, id, progress, foregroundColor } = superProps;
-	const { config, dismiss } = usePoptart();
+	const { props, id, progress, foregroundColor, config, dismiss } = superProps;
 	const { message, onClick } = props;
 
 	const type = props.type || config.defaultType;
@@ -72,7 +72,12 @@ const Poptart: React.FC<Props> = superProps => {
 				</div>
 				<span style={textStyle}>{message}</span>
 			</div>
-			<ProgressBar progress={progress} height={config.progressBar.height} backgroundColor={backgroundColor} />
+			<ProgressBar
+				progress={progress}
+				height={config.progressBar.height}
+				backgroundColor={backgroundColor}
+				config={config}
+			/>
 		</div>
 	);
 };

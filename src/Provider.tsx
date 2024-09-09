@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import Matrix from './Matrix';
+import AlertContainer from './AlertContainer';
 
 import { getContrastColor, generateSecureString, deepMerge } from './helpers';
 
@@ -12,6 +13,7 @@ import type {
 	I_PoptartProps,
 	I_PoptartConfig,
 	I_PoptartUserConfig,
+	I_AlertProps,
 } from './types';
 
 // Create the Poptart context
@@ -23,6 +25,7 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 
 	// State
 	const [poptarts, setPoptarts] = useState<I_PoptartItem[]>([]);
+	const [currentAlert, setCurrentAlert] = useState<I_AlertProps | null>(null);
 
 	// Methods
 	const push = (props: I_PoptartProps): string => {
@@ -76,17 +79,29 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 		setPoptarts(prev => prev.filter(poptart => poptart.id !== id));
 	};
 
+	const alert = (props: I_AlertProps) => {
+		setCurrentAlert(props);
+	};
+
+	const dismissAlert = () => {
+		setCurrentAlert(null);
+	};
+
 	return (
 		<PoptartContext.Provider
 			value={{
 				poptarts,
 				config,
+				currentAlert,
 				push,
 				dismiss,
+				alert,
+				dismissAlert,
 			}}
 		>
 			{children}
-			<Matrix />
+			<Matrix config={config} poptarts={poptarts} dismiss={dismiss} />
+			<AlertContainer config={config} currentAlert={currentAlert} dismissAlert={dismissAlert} />
 		</PoptartContext.Provider>
 	);
 };

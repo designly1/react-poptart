@@ -4,19 +4,25 @@
 
 ## Overview
 
-The `react-poptart` an easy-to-use notification system for React apps. It includes features like multiple animations, auto-dismiss, progress bars, and flexible theming.
+`react-poptart` is an easy-to-use notification and alert system for React apps. It includes features such as multiple animations, auto-dismiss notifications, progress bars, customizable alerts, and flexible theming options.
 
-This documentation will guide you on how to set up, use, and customize the Poptart Notification component.
+The bundled size of `react-poptart` is a mere 13kb, much smaller than most other libraries!
+
+This documentation will guide you through the setup, usage, and customization of the Poptart Notification and Alert components.
 
 ## Installation
 
-`npm install react-poptart`
+To install the package, use npm:
+
+```bash
+npm install react-poptart
+```
 
 ## Setup
 
-To use the Poptart component in your React app, you need to wrap your application in the `PoptartProvider`. This will ensure that all children components can trigger notifications.
+To use the Poptart component in your React app, you must wrap your application in the `PoptartProvider`. This ensures that all child components can trigger notifications and alerts.
 
-```ts
+```tsx
 import React from 'react';
 import { PoptartProvider } from 'react-poptart';
 
@@ -31,13 +37,13 @@ function App() {
 export default App;
 ```
 
-## Usage
+## Notifications Usage
 
-To trigger a notification, you can use the `usePoptart()` hook, which provides access to the `push()` and `dismiss()` methods.
+To trigger a notification, use the `usePoptart()` hook, which provides access to the `push()` and `dismiss()` methods.
 
 ### Example:
 
-```ts
+```tsx
 import React from 'react';
 import { usePoptart } from 'react-poptart';
 
@@ -56,13 +62,45 @@ const NotificationButton = () => {
 };
 ```
 
+## Alerts Usage
+
+You can also trigger alerts using the `alert()` method from `usePoptart()`. Alerts provide more detailed interactions like confirmation buttons and more.
+
+### Example:
+
+```tsx
+import React from 'react';
+import { usePoptart } from 'react-poptart';
+
+const AlertButton = () => {
+  const { alert } = usePoptart();
+
+  const handleAlertClick = () => {
+    alert({
+      title: 'Confirmation',
+      message: 'Are you sure you want to proceed?',
+      confirmButtonLabel: 'Yes',
+      cancelButtonLabel: 'No',
+      onConfirm: () => {
+        console.log('Confirmed!');
+      },
+      onCancel: () => {
+        console.log('Cancelled!');
+      },
+    });
+  };
+
+  return <button onClick={handleAlertClick}>Show Alert</button>;
+};
+```
+
 ## Configuration
 
-You can customize the appearance and behavior of the notifications by passing a configuration object to the `PoptartProvider`.
+You can customize the appearance and behavior of notifications and alerts by passing a configuration object to the `PoptartProvider`.
 
 ### Default Configuration:
 
-```ts
+```tsx
 const defaultConfig = {
   colors: {
     success: '#1a7e38',
@@ -76,72 +114,94 @@ const defaultConfig = {
     container: {},   // Override styles for the container
     poptart: {},     // Override styles for each notification
     progressBar: {}, // Override styles for the progress bar
+    alertContainer: {}, // Override styles for the alert container
+    alert: {},       // Override styles for each alert
   },
   defaultAlign: 'br',           // Align notifications: 'tl', 'tc', 'tr', 'bl', 'bc', 'br'
   defaultType: 'info',          // Default notification type: 'info', 'success', 'error', 'warning'
-  defaultDuration: 5000,        // Default duration for notifications
+  defaultDuration: 5000,        // Default duration for notifications (in milliseconds)
   defaultWidth: '450px',        // Default width of the notification
-  defaultAnimation: 'bounceIn', // Default animation
-  defaultAnimationDuration: 0.6, // Animation duration in seconds
-  fontSize: 16,                  // Font size in pixels
-  iconSizeFactor: 2.5,           // Multiplier for icon size relative to font size
+  defaultAnimation: 'bounceIn', // Default animation for notifications
+  defaultAnimationDuration: 0.6, // Animation duration (in seconds)
+  fontSize: 16,                  // Font size (in pixels)
+  iconSizeFactor: 2.5,           // Icon size multiplier relative to font size
   progressBar: {
     lightColor: '#D6D6D6',
     darkColor: '#454545',
-    height: 5,                   // Height of the progress bar
+    height: 5,                   // Height of the progress bar (in pixels)
   },
   contrastThreshold: 0.32,       // Threshold for contrast calculations
   paddingX: 20,                  // Horizontal padding inside the notification
   paddingY: 16,                  // Vertical padding inside the notification
   zIndex: 10,                    // Z-index for the notification container
+
+  alerts: {
+    defaultWidth: '800px',
+    paddingX: 30,
+    paddingY: 26,
+    borderRadius: 10,
+    defaultType: 'info',
+    defaultBackgroundColor: '#F5F5F5',
+    defaultFontColor: '#000',
+    defaultFontSize: 20,
+    defaultTitleFontSize: 28,
+    iconSizeFactor: 2,
+    borderWidth: 8,
+    defaultConfirmButtonColor: '#1a7e38',
+    defaultCancelButtonColor: '#e4002d',
+    defaultConfirmButtonLabel: 'Ok',
+    defaultCancelButtonLabel: 'Cancel',
+    defaultShowCancelButton: true,
+    defaultShowConfirmButton: true,
+    defaultAnimation: 'slideFromBottom',
+    defaultAnimationDuration: 0.25,
+    allowClickOffDismissal: true,
+  },
 };
 ```
 
-### Notification Types
+### Alert Properties
 
-The `type` property determines the style of the notification. Available types:
+| Property                 | Type     | Default   | Description                                          |
+| ------------------------ | -------- | --------- | ---------------------------------------------------- |
+| `title`                  | string   | N/A       | The title of the alert                               |
+| `message`                | string   | N/A       | The message displayed inside the alert               |
+| `confirmButtonLabel`     | string   | 'Ok'      | The label for the confirm button                     |
+| `cancelButtonLabel`      | string   | 'Cancel'  | The label for the cancel button                      |
+| `onConfirm`              | function | N/A       | Callback function when the confirm button is pressed |
+| `onCancel`               | function | N/A       | Callback function when the cancel button is pressed  |
+| `defaultBackgroundColor` | string   | `#F5F5F5` | Background color of the alert                        |
+| `defaultFontColor`       | string   | `#000`    | Font color of the alert text                         |
+| `iconSizeFactor`         | number   | `2`       | Size factor for icons relative to font size          |
+| `allowClickOffDismissal` | boolean  | `true`    | Whether clicking outside the alert dismisses it      |
 
-- `success`
-- `error`
-- `warning`
-- `info`
+## Dismissing Alerts
 
-### Notification Properties
+Alerts can be dismissed by clicking on the cancel button or clicking off the alert if `allowClickOffDismissal` is set to `true`. You can also dismiss alerts programmatically using `dismissAlert()`.
 
-| Property            | Type   | Default    | Description                                              |
-| ------------------- | ------ | ---------- | -------------------------------------------------------- |
-| `type`              | string | `info`     | Defines the notification type (`success`, `error`, etc.) |
-| `message`           | string | N/A        | The message displayed inside the notification            |
-| `duration`          | number | `5000`     | How long the notification stays on the screen (in ms)    |
-| `width`             | string | `450px`    | The width of the notification                            |
-| `animation`         | string | `bounceIn` | CSS animation to apply when the notification appears     |
-| `animationDuration` | number | `0.6`      | Duration of the animation (in seconds)                   |
+```tsx
+const { alert, dismissAlert } = usePoptart();
 
-## Dismissing Notifications
-
-Notifications will dismiss automatically after the specified `duration`, but they can also be dismissed manually.
-
-```ts
-const { push, dismiss } = usePoptart();
-
-const notificationId = push({
-    type: 'success',
-    message: 'This is a success notification!',
-});
-
-dismiss(notificationId);
+const handleDismiss = () => {
+  dismissAlert();
+};
 ```
 
 ## Custom Styling
 
-Override the styles by providing a `styleOverrides` object in the configuration.
+You can override the styles of both notifications and alerts by providing a `styleOverrides` object in the configuration.
 
-```jsx
+```tsx
 <PoptartProvider config={{
   styleOverrides: {
     poptart: {
       borderRadius: '8px',
       boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
+    },
+    alert: {
+      borderRadius: '10px',
+      backgroundColor: '#333',
+      color: '#FFF',
     },
     progressBar: {
       backgroundColor: '#FFCC00',
@@ -152,10 +212,14 @@ Override the styles by providing a `styleOverrides` object in the configuration.
 </PoptartProvider>
 ```
 
+
+## Development
+
+To develop `react-poptart`, simply clone and install dependencies and then run `npm run dev`. Run `npm run build` to build and `npm run test` to run all tests.
 ## Issues
 
-To report a bug or issue, please use the [GitHub Repo Issues Tracker](https://github.com/designly1/react-poptart/issues).
+To report a bug or an issue, please use the [GitHub Repo Issues Tracker](https://github.com/designly1/react-poptart/issues).
 
 ## Contributing
 
-All PRs are welcome. For major changes, please file an [issue](https://github.com/designly1/react-poptart/issues) first.
+All pull requests are welcome. For major changes, please file an [issue](https://github.com/designly1/react-poptart/issues) first to discuss what you would like to change.

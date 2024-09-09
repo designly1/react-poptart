@@ -38,6 +38,9 @@ export function useAnimations() {
         opacity: 0;
         transform: translateX(-100%);
       }
+      80% {
+        transform: translateX(5%);
+      }
       100% {
         opacity: 1;
         transform: translateX(0);
@@ -50,6 +53,9 @@ export function useAnimations() {
       0% {
         opacity: 0;
         transform: translateX(100%);
+      }
+      80% {
+        transform: translateX(-5%);
       }
       100% {
         opacity: 1;
@@ -64,6 +70,9 @@ export function useAnimations() {
         opacity: 0;
         transform: translateY(-100%);
       }
+      80% {
+        transform: translateY(5%);
+      }
       100% {
         opacity: 1;
         transform: translateY(0);
@@ -76,6 +85,9 @@ export function useAnimations() {
       0% {
         opacity: 0;
         transform: translateY(100%);
+      }
+      80% {
+        transform: translateY(-5%);
       }
       100% {
         opacity: 1;

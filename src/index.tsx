@@ -11,4 +11,6 @@ export type {
 	I_PoptartContext,
 	T_PoptartAlign,
 	T_PoptartAnimation,
+	I_AlertButton,
+	I_AlertProps,
 } from './types';

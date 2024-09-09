@@ -1,11 +1,18 @@
 import React from 'react';
 import Poptart from './Poptart';
 
-import { usePoptart } from './Provider';
 import { useAnimations } from './animations';
 
-const Matrix: React.FC = () => {
-	const { config, poptarts } = usePoptart();
+import { I_PoptartConfig, I_PoptartItem } from './types';
+
+interface Props {
+	config: I_PoptartConfig;
+	poptarts: I_PoptartItem[];
+	dismiss: (id: string) => void;
+}
+
+const Matrix: React.FC<Props> = props => {
+	const { config, poptarts, dismiss } = props;
 
 	// Inject the animation keyframes into the DOM
 	useAnimations();
@@ -53,7 +60,7 @@ const Matrix: React.FC = () => {
 		flexDirection: 'column',
 		gap: '20px',
 		padding: '20px',
-		zIndex: config.zIndex,
+		zIndex: config.zIndex + 2,
 		...styleAdditions,
 		...config.styleOverrides.container,
 	};
@@ -61,7 +68,7 @@ const Matrix: React.FC = () => {
 	return (
 		<div style={containerStyles}>
 			{poptarts.map((poptart, index) => (
-				<Poptart key={index} {...poptart} />
+				<Poptart key={index} dismiss={dismiss} config={config} {...poptart} />
 			))}
 		</div>
 	);
