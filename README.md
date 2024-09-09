@@ -94,6 +94,100 @@ const AlertButton = () => {
 };
 ```
 
+## Alert Inputs
+
+In addition to basic alerts, `react-poptart` also supports input fields inside alerts, allowing for forms or other types of user input to be captured directly within the alert.
+
+### Example:
+
+```tsx
+import React from 'react';
+import { usePoptart } from 'react-poptart';
+
+const InputAlertButton = () => {
+  const { alert } = usePoptart();
+
+  const handleAlertClick = () => {
+    alert({
+      title: 'Enter Your Email',
+      message: 'Please provide your email address.',
+      input: {
+        type: 'email',
+        placeholder: 'your-email@example.com',
+        required: true,
+      },
+      confirmButtonLabel: 'Submit',
+      cancelButtonLabel: 'Cancel',
+      onConfirm: (value) => {
+        console.log('Input value:', value);
+      },
+    });
+  };
+
+  return <button onClick={handleAlertClick}>Show Input Alert</button>;
+};
+```
+
+## Alert Inputs with Custom Validation
+
+You can add custom validation to alert inputs using a validation callback function. This function should return `true` if the input is valid or return a string message if the validation fails. The string message will be displayed as an error.
+
+### Example with Custom Validation:
+
+```tsx
+import React, { useState } from 'react';
+import { usePoptart } from 'react-poptart';
+
+const CustomValidationAlertButton = () => {
+  const { alert } = usePoptart();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCustomValidation = (value: string) => {
+    // Simple validation example: email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!value) {
+      return 'Email is required';
+    } else if (!emailPattern.test(value)) {
+      return 'Please enter a valid email address';
+    }
+    return true;
+  };
+
+  const handleAlertClick = () => {
+    alert({
+      title: 'Enter Your Email',
+      message: 'Please provide your email address.',
+      input: {
+        type: 'email',
+        placeholder: 'your-email@example.com',
+        required: true,
+      },
+      confirmButtonLabel: 'Submit',
+      cancelButtonLabel: 'Cancel',
+      onConfirm: (value) => {
+        const validationResult = handleCustomValidation(value);
+        if (validationResult === true) {
+          setError(null);
+          console.log('Valid input:', value);
+        } else {
+          setError(validationResult as string);
+        }
+      },
+      error, // Pass the error to display it in the alert input
+    });
+  };
+
+  return <button onClick={handleAlertClick}>Show Custom Validation Alert</button>;
+};
+```
+
+### Custom Validation Workflow:
+
+1. The `handleCustomValidation` function validates the input.
+2. If the input is valid, it returns `true`.
+3. If the input is invalid, it returns a string that will be displayed as an error message.
+4. The error message is passed to the alert component and displayed below the input field.
+
 ## Configuration
 
 You can customize the appearance and behavior of notifications and alerts by passing a configuration object to the `PoptartProvider`.
@@ -156,28 +250,47 @@ const defaultConfig = {
     defaultAnimation: 'slideFromBottom',
     defaultAnimationDuration: 0.25,
     allowClickOffDismissal: true,
+    input: {
+      backgroundColor: '#fcfcfcac',
+      fontColor: '#000',
+      borderRadius: 5,
+      borderWidth: 1,
+      paddingX: 10,
+      paddingY: 8,
+      maxWidth: '70%',
+      errorFeedbackColor: '#d12c2c',
+      placeholderColor: '#a0a0a0',
+    },
   },
 };
 ```
 
-### Alert Properties
+### Alert Input Configuration
 
-| Property                 | Type     | Default   | Description                                          |
-| ------------------------ | -------- | --------- | ---------------------------------------------------- |
-| `title`                  | string   | N/A       | The title of the alert                               |
-| `message`                | string   | N/A       | The message displayed inside the alert               |
-| `confirmButtonLabel`     | string   | 'Ok'      | The label for the confirm button                     |
-| `cancelButtonLabel`      | string   | 'Cancel'  | The label for the cancel button                      |
-| `onConfirm`              | function | N/A       | Callback function when the confirm button is pressed |
-| `onCancel`               | function | N/A       | Callback function when the cancel button is pressed  |
-| `defaultBackgroundColor` | string   | `#F5F5F5` | Background color of the alert                        |
-| `defaultFontColor`       | string   | `#000`    | Font color of the alert text                         |
-| `iconSizeFactor`         | number   | `2`       | Size factor for icons relative to font size          |
-| `allowClickOffDismissal` | boolean  | `true`    | Whether clicking outside the alert dismisses it      |
+You can customize input fields in alerts using the configuration object in `PoptartProvider` or inline for individual alerts.
+
+### Input Configuration:
+
+| Property                 | Type     | Default     | Description                                 |
+| ------------------------ | -------- | ----------- | ------------------------------------------- |
+| `type`                   | string   | `text`      | The type of input (e.g., `text
+
+`, `email`)   |
+| `placeholder`            | string   | `""`        | Placeholder text                            |
+| `required`               | boolean  | `false`     | Whether the input is required               |
+| `backgroundColor`        | string   | `#fcfcfcac` | Background color of the input               |
+| `fontColor`              | string   | `#000`      | Font color of the input text                |
+| `borderRadius`           | number   | `5`         | Border radius of the input                  |
+| `borderWidth`            | number   | `1`         | Border width of the input                   |
+| `paddingX`               | number   | `10`        | Horizontal padding inside the input         |
+| `paddingY`               | number   | `8`         | Vertical padding inside the input           |
+| `maxWidth`               | string   | `'70%'`     | Maximum width of the input                  |
+| `errorFeedbackColor`     | string   | `#d12c2c`   | Color for error messages                    |
+| `placeholderColor`       | string   | `#a0a0a0`   | Color of the placeholder text               |
 
 ## Dismissing Alerts
 
-Alerts can be dismissed by clicking on the cancel button or clicking off the alert if `allowClickOffDismissal` is set to `true`. You can also dismiss alerts programmatically using `dismissAlert()`.
+Alerts can be dismissed by clicking on the cancel button, clicking off the alert if `allowClickOffDismissal` is set to `true`, or programmatically using `dismissAlert()`.
 
 ```tsx
 const { alert, dismissAlert } = usePoptart();
@@ -212,13 +325,17 @@ You can override the styles of both notifications and alerts by providing a `sty
 </PoptartProvider>
 ```
 
-
 ## Development
 
 To develop `react-poptart`, simply clone and install dependencies and then run `npm run dev`. Run `npm run build` to build and `npm run test` to run all tests.
+
 ## Issues
 
 To report a bug or an issue, please use the [GitHub Repo Issues Tracker](https://github.com/designly1/react-poptart/issues).
+
+## Changelog
+
+You can checkout the changelog [here](https://github.com/designly1/react-poptart/blob/master/CHANGELOG.md).
 
 ## Contributing
 

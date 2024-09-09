@@ -73,6 +73,17 @@ export interface I_AlertConfig {
 	defaultAnimation: T_PoptartAnimation;
 	defaultAnimationDuration: number;
 	allowClickOffDismissal: boolean;
+	input: {
+		backgroundColor: string;
+		fontColor: string;
+		borderRadius: number;
+		borderWidth: number;
+		paddingX: number;
+		paddingY: number;
+		maxWidth: string;
+		errorFeedbackColor: string;
+		placeholderColor: string;
+	};
 }
 
 // Poptart config interface
@@ -124,7 +135,9 @@ export interface I_PoptartUserConfig {
 	paddingX?: number;
 	paddingY?: number;
 	zIndex?: number;
-	alerts?: Partial<I_AlertConfig>;
+	alerts?: Partial<Omit<I_AlertConfig, 'input'>> & {
+		input?: Partial<I_AlertConfig['input']>;
+	};
 }
 
 // Provider interface
@@ -147,13 +160,22 @@ export interface I_AlertButton {
 	onClick: () => void;
 }
 
+export type T_AlertInputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
+
+export interface I_AlertInput {
+	type?: T_AlertInputType;
+	placeholder?: string;
+	required?: boolean;
+	validationCallback?: (value: string | undefined) => string | boolean;
+}
+
 export interface I_AlertProps {
 	title: string;
 	message: string;
 	type?: T_PoptartType;
 	confirmButtonLabel?: string;
 	confirmButtonBackgroundColor?: string;
-	confirmButtonCallback?: () => void;
+	confirmButtonCallback?: (value: string | undefined) => void;
 	cancelButtonLabel?: string;
 	cancelButtonBackgroundColor?: string;
 	cancelButtonCallback?: () => void;
@@ -165,4 +187,6 @@ export interface I_AlertProps {
 	fontColor?: string;
 	animation?: T_PoptartAnimation;
 	animationDuration?: number;
+	input?: I_AlertInput;
+	allowClickOffDismissal?: boolean;
 }

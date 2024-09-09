@@ -65,12 +65,14 @@ const Poptart: React.FC<Props> = superProps => {
 	const iconSize = fontSize * config.iconSizeFactor;
 
 	return (
-		<div style={dynamicStyles} onClick={handleClick}>
-			<div style={innerStyle}>
-				<div style={{ width: iconSize }}>
+		<div className="poptart" style={dynamicStyles} onClick={handleClick}>
+			<div className="poptart-inner" style={innerStyle}>
+				<div className="poptart-icon" style={{ width: iconSize }}>
 					<Icon type={type} color={foregroundColor} size={iconSize} />
 				</div>
-				<span style={textStyle}>{message}</span>
+				<span className="poptart-message" style={textStyle}>
+					{message}
+				</span>
 			</div>
 			<ProgressBar
 				progress={progress}

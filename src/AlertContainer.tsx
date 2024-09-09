@@ -48,15 +48,18 @@ export default function AlertContainer(props: Props) {
 	};
 
 	const handleModalClick = () => {
-		if (config.alerts.allowClickOffDismissal) {
+		const canDismiss = currentAlert?.allowClickOffDismissal
+			? currentAlert.allowClickOffDismissal
+			: config.alerts.allowClickOffDismissal;
+		if (canDismiss) {
 			dismissAlert();
 		}
 	};
 
 	return (
-		<div style={styles}>
+		<div className="poptart-alert-container" style={styles}>
 			{showModal ? (
-				<div style={modalStyles} onClick={handleModalClick}>
+				<div className="poptart-modal" style={modalStyles} onClick={handleModalClick}>
 					<>
 						{showAlert && currentAlert ? (
 							<Alert config={config} alert={currentAlert} dismissAlert={dismissAlert} />

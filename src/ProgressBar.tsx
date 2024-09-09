@@ -29,7 +29,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, height, backgroundC
 		...config.styleOverrides.progressBar,
 	};
 
-	return <div style={dynamicStyles} />;
+	return <div className="poptart-progress" style={dynamicStyles} />;
 };
 
 export default ProgressBar;

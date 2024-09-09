@@ -97,11 +97,13 @@ export function useAnimations() {
   `;
 
 	useEffect(() => {
-		injectStyle(bounceInKeyframes);
-		injectStyle(fadeInKeyframes);
-		injectStyle(slideFromLeftKeyframes);
-		injectStyle(slideFromRightKeyframes);
-		injectStyle(slideFromTopKeyframes);
-		injectStyle(slideFromBottomKeyframes);
+		const allStyles =
+			bounceInKeyframes +
+			fadeInKeyframes +
+			slideFromLeftKeyframes +
+			slideFromRightKeyframes +
+			slideFromTopKeyframes +
+			slideFromBottomKeyframes;
+		injectStyle('poptart-animations', allStyles);
 	}, []);
 }

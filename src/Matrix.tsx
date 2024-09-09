@@ -66,7 +66,7 @@ const Matrix: React.FC<Props> = props => {
 	};
 
 	return (
-		<div style={containerStyles}>
+		<div className="poptart-container" style={containerStyles}>
 			{poptarts.map((poptart, index) => (
 				<Poptart key={index} dismiss={dismiss} config={config} {...poptart} />
 			))}

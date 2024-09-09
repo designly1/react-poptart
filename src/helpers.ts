@@ -46,8 +46,14 @@ export function getContrastColor({
 }
 
 // Function to dynamically inject styles into the document
-export const injectStyle = (style: string) => {
+export const injectStyle = (id: string, style: string) => {
+	const existingStyleElement = document.getElementById(id);
+	if (existingStyleElement) {
+		existingStyleElement.innerHTML = style;
+		return;
+	}
 	const styleElement = document.createElement('style');
+	styleElement.id = id;
 	styleElement.innerHTML = style;
 	document.head.appendChild(styleElement);
 };

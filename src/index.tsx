@@ -13,4 +13,7 @@ export type {
 	T_PoptartAnimation,
 	I_AlertButton,
 	I_AlertProps,
+	I_AlertConfig,
+	I_AlertInput,
+	T_AlertInputType,
 } from './types';
