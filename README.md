@@ -1,6 +1,6 @@
 # react-poptart
 
-[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml) [![npm version](https://badge.fury.io/js/react-poptart.svg)](https://badge.fury.io/js/react-poptart)
+[![All Tests](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml/badge.svg)](https://github.com/designly1/react-poptart/actions/workflows/alltests.yml) [![npm version](https://badge.fury.io/js/react-poptart.svg)](https://badge.fury.io/js/react-poptart) ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 [Changelog](https://github.com/designly1/react-poptart/blob/master/CHANGELOG.md)
 
