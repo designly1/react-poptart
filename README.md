@@ -241,7 +241,8 @@ export const defaultConfig: I_PoptartConfig = {
 		alertContainer: {}, // Custom styles for the alert container
 		alert: {}, // Custom styles for the alert itself
 	},
-	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl' - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
+	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl' 
+  // - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
 	defaultAlign: 'br', 
 	// Default type of notification (possible values: 'success', 'error', 'warning', 'info')
 	defaultType: 'info',
@@ -249,7 +250,8 @@ export const defaultConfig: I_PoptartConfig = {
 	defaultDuration: 5000, 
 	// Default width of the notification poptart
 	defaultWidth: '450px',
-	// Default animation for the notification appearance (possible values: 'bounceIn', 'fadeIn', 'slideFromLeft', 'slideFromRight', 'slideFromTop', 'slideFromBottom')
+	// Default animation for the notification appearance (possible values: 'bounceIn', 'fadeIn', 'slideFromLeft', 
+  // 'slideFromRight', 'slideFromTop', 'slideFromBottom')
 	defaultAnimation: 'bounceIn',
 	// Default animation duration for notifications (in seconds)
 	defaultAnimationDuration: 0.6,
