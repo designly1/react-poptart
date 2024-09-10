@@ -35,6 +35,13 @@ export interface I_PoptartProps {
 	onClick?: () => void;
 }
 
+export interface I_PoptartItem {
+	id: string;
+	props: I_PoptartProps;
+	expires: Date | null;
+	foregroundColor: string;
+}
+
 // Poptart colors interface
 export type T_PoptartColors = {
 	success: string;
@@ -144,14 +151,6 @@ export interface I_PoptartUserConfig {
 export interface I_PoptartProviderProps {
 	children: ReactNode;
 	config?: I_PoptartUserConfig;
-}
-
-export interface I_PoptartItem {
-	id: string;
-	props: I_PoptartProps;
-	expires: Date | null;
-	progress: number;
-	foregroundColor: string;
 }
 
 export interface I_AlertButton {

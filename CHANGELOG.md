@@ -11,3 +11,11 @@ Initial release
 - Tweaked default colors
 - Bux fix: alert type always says "info"
 - Bug fix: multiple injected style elements
+
+## [1.1.0] - 2024-09-10
+
+- CSS bug fixes
+- Made animation CSS smoother
+- Tweaked alert CSS and sizing
+- Bug fix: text would bust out of alert box
+  

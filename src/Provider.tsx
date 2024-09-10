@@ -54,21 +54,9 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 		]);
 
 		if (duration > 0) {
-			const interval = setInterval(() => {
-				setPoptarts(prev =>
-					prev.map(poptart => {
-						if (poptart.id === id && poptart.expires && duration > 0) {
-							const progress = (poptart.expires.getTime() - Date.now()) / duration;
-							if (progress <= 0) {
-								clearInterval(interval);
-								dismiss(id);
-							}
-							return { ...poptart, progress: progress * 100 };
-						}
-						return poptart;
-					}),
-				);
-			}, 30);
+			setTimeout(() => {
+				dismiss(id);
+			}, duration);
 		}
 
 		return id;

@@ -34,7 +34,7 @@ export const defaultConfig: I_PoptartConfig = {
 	paddingY: 16,
 	zIndex: 10,
 	alerts: {
-		defaultWidth: '800px',
+		defaultWidth: '600px',
 		paddingX: 30,
 		paddingY: 26,
 		borderRadius: 10,

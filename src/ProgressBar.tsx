@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { getContrastColor } from './helpers';
 
-import { I_PoptartConfig } from './types';
+import { I_PoptartConfig, I_PoptartProps } from './types';
 
 interface ProgressBarProps {
-	progress: number;
+	poptart: I_PoptartProps;
 	height: number;
 	backgroundColor: string;
 	config: I_PoptartConfig;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ progress, height, backgroundColor, config }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ poptart, height, backgroundColor, config }) => {
 	const color = getContrastColor({
 		backgroundColor,
 		lightColor: config.progressBar.lightColor,
 		darkColor: config.progressBar.darkColor,
 	});
+
+	const [width, setWidth] = useState(100);
+
+	const duration = poptart.duration !== undefined ? poptart.duration : config.defaultDuration;
+
+	useEffect(() => {
+		setTimeout(() => {
+			setWidth(0);
+		}, 100);
+	}, []);
 
 	const dynamicStyles: React.CSSProperties = {
 		position: 'absolute',
@@ -24,8 +34,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, height, backgroundC
 		left: 0,
 		height: `${height}px`,
 		backgroundColor: color,
-		width: `${progress}%`,
-		transition: 'width 0s linear',
+		width: `${width}%`,
+		transition: `width ${duration}ms linear`,
 		...config.styleOverrides.progressBar,
 	};
 

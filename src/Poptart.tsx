@@ -10,7 +10,7 @@ interface Props extends I_PoptartItem {
 }
 
 const Poptart: React.FC<Props> = superProps => {
-	const { props, id, progress, foregroundColor, config, dismiss } = superProps;
+	const { props, id, foregroundColor, config, dismiss } = superProps;
 	const { message, onClick } = props;
 
 	const type = props.type || config.defaultType;
@@ -20,7 +20,7 @@ const Poptart: React.FC<Props> = superProps => {
 	const paddingX = config.paddingX;
 	const paddingY = config.paddingY;
 	const progressBarHeight = config.progressBar.height;
-	const duration = props.duration || config.defaultDuration;
+	const duration = props.duration !== undefined ? props.duration : config.defaultDuration;
 	const hasDuration = duration > 0;
 	const animation = props.animation || config.defaultAnimation;
 	const animationDuration = props.animationDuration || config.defaultAnimationDuration;
@@ -74,12 +74,14 @@ const Poptart: React.FC<Props> = superProps => {
 					{message}
 				</span>
 			</div>
-			<ProgressBar
-				progress={progress}
-				height={config.progressBar.height}
-				backgroundColor={backgroundColor}
-				config={config}
-			/>
+			{duration > 0 ? (
+				<ProgressBar
+					poptart={props}
+					height={config.progressBar.height}
+					backgroundColor={backgroundColor}
+					config={config}
+				/>
+			) : null}
 		</div>
 	);
 };
