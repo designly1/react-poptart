@@ -10,10 +10,11 @@ interface Props {
 	setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	onConfirm: () => void;
 	error: string | undefined;
+	zIndex: number;
 }
 
 export default function AlertInput(props: Props) {
-	const { input, config, value, setValue, error, alert, onConfirm } = props;
+	const { input, config, value, setValue, error, alert, onConfirm, zIndex } = props;
 
 	const { type, placeholder, required } = input;
 
@@ -46,6 +47,7 @@ export default function AlertInput(props: Props) {
 			flexDirection: 'column' as 'column',
 			alignItems: 'center',
 			gap: '5px',
+			zIndex,
 		},
 		outer: {
 			backgroundColor,

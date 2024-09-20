@@ -19,3 +19,6 @@ Initial release
 - Tweaked alert CSS and sizing
 - Bug fix: text would bust out of alert box
   
+## [1.1.1] - 2024-09-20
+
+- Bug fix: fixed alert zIndexes

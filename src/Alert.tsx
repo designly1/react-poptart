@@ -12,6 +12,9 @@ interface Props {
 	dismissAlert: () => void;
 }
 
+const FG_Z_INDEX = 2;
+const BG_Z_INDEX = 1;
+
 export default function Alert(props: Props) {
 	const { config, alert, dismissAlert } = props;
 
@@ -73,14 +76,17 @@ export default function Alert(props: Props) {
 			display: 'flex',
 			alignItems: 'center',
 			gap: '10px',
+			zIndex: FG_Z_INDEX,
 		},
 		alertMessage: {
 			fontSize: `${config.alerts.defaultFontSize}px`,
+			zIndex: FG_Z_INDEX,
 		},
 		buttonGroup: {
 			display: 'flex',
 			justifyContent: 'center',
 			gap: '16px',
+			zIndex: FG_Z_INDEX,
 		},
 		confirmButton: {
 			backgroundColor: config.alerts.defaultConfirmButtonColor,
@@ -99,10 +105,11 @@ export default function Alert(props: Props) {
 			alignItems: 'center',
 			justifyContent: 'start',
 			overflow: 'hidden',
-			zIndex: 1,
+			zIndex: BG_Z_INDEX,
 		},
 		foreground: {
 			display: 'flex',
+			position: 'relative',
 			flexDirection: 'column',
 			alignItems: 'center',
 			justifyContent: 'space-between',
@@ -110,7 +117,6 @@ export default function Alert(props: Props) {
 			width: '100%',
 			minHeight: '300px',
 			padding: `${config.alerts.paddingY}px ${config.alerts.paddingX}px`,
-			zIndex: 2,
 		},
 		backgroundImage: {
 			transform: 'translateX(-100px)',
@@ -161,12 +167,12 @@ export default function Alert(props: Props) {
 				e.stopPropagation();
 			}}
 		>
-			<div className="poptart-alert-background" style={styles.background}>
-				<div className="poptart-alert-background-image" style={styles.backgroundImage}>
-					<Icon type={type} color={primaryColor} size={500} />
-				</div>
-			</div>
 			<div className="poptart-alert-foreground" style={styles.foreground}>
+				<div className="poptart-alert-background" style={styles.background}>
+					<div className="poptart-alert-background-image" style={styles.backgroundImage}>
+						<Icon type={type} color={primaryColor} size={500} />
+					</div>
+				</div>
 				<div style={styles.titleContainer}>
 					<Icon type={type} color={primaryColor} size={iconSize} />
 					<h1 style={styles.title}>{alert.title}</h1>
@@ -181,6 +187,7 @@ export default function Alert(props: Props) {
 						error={error}
 						alert={alert}
 						onConfirm={handleConfirm}
+						zIndex={FG_Z_INDEX}
 					/>
 				) : null}
 				<div style={styles.buttonGroup}>
