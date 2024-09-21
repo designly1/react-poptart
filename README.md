@@ -8,7 +8,7 @@
 
 `react-poptart` is an easy-to-use notification and alert system for React apps. It includes features such as multiple animations, auto-dismiss notifications, progress bars, customizable alerts, and flexible theming options.
 
-The bundled size of `react-poptart` is a mere 13kb, much smaller than most other libraries!
+The bundled size of `react-poptart` is a mere 18kb, much smaller than most other libraries!
 
 This documentation will guide you through the setup, usage, and customization of the Poptart Notification and Alert components.
 
