@@ -1,4 +1,5 @@
 export { PoptartProvider, usePoptart } from './Provider';
+export { E_PoptartAlign, E_PoptartAnimation, E_PoptartStyle, E_PoptartType, E_AlertInputType } from './types';
 export type {
 	I_PoptartProviderProps,
 	I_PoptartConfig,
@@ -18,9 +19,4 @@ export type {
 	I_AlertInput,
 	T_AlertInputType,
 	T_PoptartStyle,
-	E_PoptartAlign,
-	E_PoptartAnimation,
-	E_PoptartStyle,
-	E_PoptartType,
-	E_AlertInputType,
 } from './types';
