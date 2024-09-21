@@ -64,17 +64,50 @@ const NotificationButton = () => {
 };
 ```
 
+### Promises
+
+You can also create a poptart with a loading spinner that resolves to either an error or success poptart:
+
+```ts
+// Promise interface 
+interface I_PoptartPromise {
+	promise: Promise<void>;
+	successMessage: string;
+	errorMessage: string;
+}
+
+// Promise method
+promise(message: string, promise: I_PoptartPromise, overrides?: Partial<I_PoptartProps>) => string;
+```
+
+### Example:
+
+```ts
+const handleCreatePromisePoptart = () => {
+	poptart.promise('Saving user data...', {
+		promise: new Promise(resolve => {
+			setTimeout(() => {
+				resolve();
+			}, 2000);
+		}),
+		successMessage: 'User data saved successfully!',
+		errorMessage: 'Failed to save user data',
+	});
+};
+```
+
 ## Poptart Properties
 
-| Property           | Type     | Default      | Description                                                             |
-| ------------------ | -------- | ------------ | ----------------------------------------------------------------------- |
-| `type?`            | string   | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'` |
-| `message`          | string   | N/A          | The message displayed inside the notification                            |
-| `width?`           | string   | `'450px'`    | Width of the notification                                                |
-| `duration?`        | number   | `5000`       | How long the notification stays visible (in milliseconds)                |
-| `animation?`       | string   | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc. |
-| `animationDuration?`| number  | `0.6`        | Animation duration in seconds                                            |
-| `onClick?`         | function | `undefined`  | Callback function for when a Poptart is clicked                           |
+| Property             | Type             | Default      | Description                                                                                         |
+| -------------------- | ---------------- | ------------ | --------------------------------------------------------------------------------------------------- |
+| `type?`              | string           | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'`                             |
+| `message`            | string           | N/A          | The message displayed inside the notification                                                       |
+| `width?`             | string           | `'450px'`    | Width of the notification                                                                           |
+| `duration?`          | number           | `5000`       | How long the notification stays visible (in milliseconds)                                           |
+| `animation?`         | string           | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc.       |
+| `animationDuration?` | number           | `0.6`        | Animation duration in seconds                                                                       |
+| `onClick?`           | function         | `undefined`  | Callback function for when a Poptart is clicked                                                     |
+| `promise?`           | I_PoptartPromise | `undefined`  | Create a promise poptart that resolves to either an error or success poptart (see promises section) |
 
 ## Alerts Usage
 
@@ -230,8 +263,9 @@ export const defaultConfig: I_PoptartConfig = {
 		error: '#e71b44', // Red color for error notifications
 		warning: '#ffdc2e', // Yellow color for warning notifications
 		info: '#1FA2FF', // Blue color for info notifications
-		textLight: '#f9f9f9', // Light color for text
-		textDark: '#171717', // Dark color for text
+		loading: '#4b5155', // Gray color for loading notifications
+		textLight: '#f9f9f9', // Light contrasting color for text
+		textDark: '#171717', // Dark contrasting color for text
 	},
 	// Override styles for various Poptart components
 	styleOverrides: {
@@ -241,22 +275,22 @@ export const defaultConfig: I_PoptartConfig = {
 		alertContainer: {}, // Custom styles for the alert container
 		alert: {}, // Custom styles for the alert itself
 	},
-	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl' 
-  // - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
-	defaultAlign: 'br', 
+	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl'
+	// - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
+	defaultAlign: 'br',
 	// Default type of notification (possible values: 'success', 'error', 'warning', 'info')
 	defaultType: 'info',
 	// Default duration for which the notification is displayed (in milliseconds)
-	defaultDuration: 5000, 
+	defaultDuration: 5000,
 	// Default width of the notification poptart
 	defaultWidth: '450px',
-	// Default animation for the notification appearance (possible values: 'bounceIn', 'fadeIn', 'slideFromLeft', 
-  // 'slideFromRight', 'slideFromTop', 'slideFromBottom')
+	// Default animation for the notification appearance (possible values: 'bounceIn', 'fadeIn', 'slideFromLeft',
+	// 'slideFromRight', 'slideFromTop', 'slideFromBottom')
 	defaultAnimation: 'bounceIn',
 	// Default animation duration for notifications (in seconds)
 	defaultAnimationDuration: 0.6,
 	// Default font size used in the notification text
-	fontSize: 16, 
+	fontSize: 16,
 	// Factor to adjust the size of icons relative to the font size
 	iconSizeFactor: 2.5,
 	// Customization for the progress bar in the notification
@@ -309,6 +343,13 @@ export const defaultConfig: I_PoptartConfig = {
 			errorFeedbackColor: '#d12c2c', // Color used to indicate errors in input validation
 			placeholderColor: '#a0a0a0', // Placeholder text color
 		},
+	},
+	// Default settings for the spinner component
+	spinner: {
+		strokeWidth: 8, // Thickness of the spinner ring
+		baseColor: '#f3f3f3', // Background color of the spinner ring
+		accentColor: '#bbbbbb', // Accent color of the spinner ring
+		animationDuration: 1, // Duration of the spinner animation (in seconds)
 	},
 };
 ```

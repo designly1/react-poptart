@@ -14,6 +14,7 @@ import type {
 	I_PoptartConfig,
 	I_PoptartUserConfig,
 	I_AlertProps,
+	I_PoptartPromise,
 } from './types';
 
 // Create the Poptart context
@@ -30,9 +31,13 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 	// Methods
 	const push = (props: I_PoptartProps): string => {
 		const id = generateSecureString(64);
+		const hasPromise = typeof props.promise !== typeof undefined;
+
+		const type = hasPromise ? 'loading' : props.type || config.defaultType;
+		props.type = type;
 
 		const foregroundColor = getContrastColor({
-			backgroundColor: config.colors[props.type || config.defaultType],
+			backgroundColor: config.colors[type],
 			lightColor: config.colors.textLight,
 			darkColor: config.colors.textDark,
 		});
@@ -53,13 +58,48 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 			},
 		]);
 
-		if (duration > 0) {
+		if (duration > 0 && !hasPromise) {
 			setTimeout(() => {
 				dismiss(id);
 			}, duration);
 		}
 
+		// If the poptart has a promise, return the promise
+		if (hasPromise) {
+			const promise = props.promise as I_PoptartPromise;
+			promise.promise
+				.then(() => {
+					push({
+						message: promise.successMessage,
+						type: 'success',
+						duration: config.defaultDuration,
+					});
+					dismiss(id);
+				})
+				.catch(() => {
+					push({
+						message: promise.errorMessage,
+						type: 'error',
+						duration: config.defaultDuration,
+					});
+					dismiss(id);
+				});
+		}
+
 		return id;
+	};
+
+	const promise = (
+		message: string,
+		promise: I_PoptartPromise,
+		overrides: Partial<I_PoptartProps> | undefined = undefined,
+	): string => {
+		const props: I_PoptartProps = {
+			message,
+			promise,
+			...overrides,
+		};
+		return push(props);
 	};
 
 	// Dismiss a poptart
@@ -82,6 +122,7 @@ export const PoptartProvider: React.FC<I_PoptartProviderProps> = ({ children, co
 				config,
 				currentAlert,
 				push,
+				promise,
 				dismiss,
 				alert,
 				dismissAlert,

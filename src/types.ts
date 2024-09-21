@@ -8,21 +8,56 @@ export interface I_PoptartContext {
 	config: I_PoptartConfig;
 	currentAlert: I_AlertProps | null;
 	push: (props: I_PoptartProps) => void;
+	promise: (message: string, promise: I_PoptartPromise, overrides?: Partial<I_PoptartProps>) => string;
 	dismiss: (id: string) => void;
 	alert: (props: I_AlertProps) => void;
 	dismissAlert: () => void;
 }
 
+// Enumerations
+export enum E_PoptartType {
+	success = 'Success',
+	error = 'Error',
+	warning = 'Warning',
+	info = 'Info',
+	loading = 'Loading',
+}
+
+export enum E_PoptartAlign {
+	tl = 'Top Left',
+	tc = 'Top Center',
+	tr = 'Top Right',
+	bl = 'Bottom Left',
+	bc = 'Bottom Center',
+	br = 'Bottom Right',
+}
+
+export enum E_PoptartStyle {
+	default = 'Default',
+	filled = 'Filled',
+	outlined = 'Outlined',
+}
+
+export enum E_PoptartAnimation {
+	bounceIn = 'Bounce In',
+	fadeIn = 'Fade In',
+	slideFromLeft = 'Slide From Left',
+	slideFromRight = 'Slide From Right',
+	slideFromTop = 'Slide From Top',
+	slideFromBottom = 'Slide From Bottom',
+}
+
 // Poptart types
-export type T_PoptartType = 'success' | 'error' | 'warning' | 'info';
-export type T_PoptartAlign = 'tl' | 'tc' | 'tr' | 'bl' | 'bc' | 'br';
-export type T_PoptartAnimation =
-	| 'bounceIn'
-	| 'fadeIn'
-	| 'slideFromLeft'
-	| 'slideFromRight'
-	| 'slideFromTop'
-	| 'slideFromBottom';
+export type T_PoptartType = keyof typeof E_PoptartType;
+export type T_PoptartAlign = keyof typeof E_PoptartAlign;
+export type T_PoptartStyle = keyof typeof E_PoptartStyle;
+export type T_PoptartAnimation = keyof typeof E_PoptartAnimation;
+
+export interface I_PoptartPromise {
+	promise: Promise<void>;
+	successMessage: string;
+	errorMessage: string;
+}
 
 // Interface for user callable poptart.push()
 export interface I_PoptartProps {
@@ -33,6 +68,7 @@ export interface I_PoptartProps {
 	animation?: T_PoptartAnimation;
 	animationDuration?: number;
 	onClick?: () => void;
+	promise?: I_PoptartPromise;
 }
 
 export interface I_PoptartItem {
@@ -50,6 +86,7 @@ export type T_PoptartColors = {
 	info: string;
 	textLight: string;
 	textDark: string;
+	loading: string;
 };
 
 // Interface for the progress bar
@@ -93,6 +130,14 @@ export interface I_AlertConfig {
 	};
 }
 
+// Spinner config interface
+export interface I_PoptartSpinnerConfig {
+	strokeWidth: number;
+	baseColor: string;
+	accentColor: string;
+	animationDuration: number;
+}
+
 // Poptart config interface
 export interface I_PoptartConfig {
 	colors: T_PoptartColors;
@@ -117,6 +162,7 @@ export interface I_PoptartConfig {
 	paddingY: number;
 	zIndex: number;
 	alerts: I_AlertConfig;
+	spinner: I_PoptartSpinnerConfig;
 }
 
 // Popart user config interface
@@ -145,6 +191,7 @@ export interface I_PoptartUserConfig {
 	alerts?: Partial<Omit<I_AlertConfig, 'input'>> & {
 		input?: Partial<I_AlertConfig['input']>;
 	};
+	spinner?: Partial<I_PoptartSpinnerConfig>;
 }
 
 // Provider interface
@@ -159,7 +206,16 @@ export interface I_AlertButton {
 	onClick: () => void;
 }
 
-export type T_AlertInputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
+export enum E_AlertInputType {
+	text = 'text',
+	password = 'password',
+	email = 'email',
+	number = 'number',
+	tel = 'tel',
+	url = 'url',
+}
+
+export type T_AlertInputType = keyof typeof E_AlertInputType;
 
 export interface I_AlertInput {
 	type?: T_AlertInputType;

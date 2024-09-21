@@ -22,3 +22,7 @@ Initial release
 ## [1.1.1] - 2024-09-20
 
 - Bug fix: fixed alert zIndexes
+
+## [1.1.2] - 2024-09-21
+
+- Added feature: promise poptarts that resolve to success or error poptarts

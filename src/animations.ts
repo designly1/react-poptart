@@ -96,6 +96,31 @@ export function useAnimations() {
     }
   `;
 
+	const spin = `
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  `;
+
+	const beacon = `
+    @keyframes beacon {
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    } 
+  `;
+
 	useEffect(() => {
 		const allStyles =
 			bounceInKeyframes +
@@ -103,7 +128,9 @@ export function useAnimations() {
 			slideFromLeftKeyframes +
 			slideFromRightKeyframes +
 			slideFromTopKeyframes +
-			slideFromBottomKeyframes;
+			slideFromBottomKeyframes +
+			spin +
+			beacon;
 		injectStyle('poptart-animations', allStyles);
 	}, []);
 }

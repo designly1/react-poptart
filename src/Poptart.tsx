@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from './Icon';
 import ProgressBar from './ProgressBar';
+import Spinner from './Spinner';
 
 import type { I_PoptartItem, I_PoptartConfig } from './types';
 
@@ -24,6 +25,8 @@ const Poptart: React.FC<Props> = superProps => {
 	const hasDuration = duration > 0;
 	const animation = props.animation || config.defaultAnimation;
 	const animationDuration = props.animationDuration || config.defaultAnimationDuration;
+	const isLoading = props.type === 'loading';
+	const useProgressBar = hasDuration && !isLoading;
 
 	// Dynamic styles
 	const dynamicStyles: React.CSSProperties = {
@@ -55,6 +58,7 @@ const Poptart: React.FC<Props> = superProps => {
 		wordBreak: 'break-word',
 		hyphens: 'auto',
 		overflowWrap: 'break-word',
+		animation: isLoading ? 'beacon 1s infinite' : 'none',
 	};
 
 	const handleClick = () => {
@@ -67,14 +71,18 @@ const Poptart: React.FC<Props> = superProps => {
 	return (
 		<div className="poptart" style={dynamicStyles} onClick={handleClick}>
 			<div className="poptart-inner" style={innerStyle}>
-				<div className="poptart-icon" style={{ width: iconSize }}>
-					<Icon type={type} color={foregroundColor} size={iconSize} />
-				</div>
+				{isLoading ? (
+					<Spinner size={iconSize} {...config.spinner} />
+				) : (
+					<div className="poptart-icon" style={{ width: iconSize }}>
+						<Icon type={type} color={foregroundColor} size={iconSize} />
+					</div>
+				)}
 				<span className="poptart-message" style={textStyle}>
 					{message}
 				</span>
 			</div>
-			{duration > 0 ? (
+			{useProgressBar ? (
 				<ProgressBar
 					poptart={props}
 					height={config.progressBar.height}
