@@ -1,4 +1,5 @@
 export { PoptartProvider, usePoptart } from './Provider';
+export { defaultConfig as defaultPoptartConfig } from './constants';
 export { E_PoptartAlign, E_PoptartAnimation, E_PoptartStyle, E_PoptartType, E_AlertInputType } from './types';
 export type {
 	I_PoptartProviderProps,

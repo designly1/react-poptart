@@ -28,10 +28,17 @@ const Poptart: React.FC<Props> = superProps => {
 	const isLoading = props.type === 'loading';
 	const useProgressBar = hasDuration && !isLoading;
 
+	const defaultPoptartStyle = config.defaultPoptartStyle === 'default' ? 'filled' : config.defaultPoptartStyle;
+	let poptartStyle = defaultPoptartStyle;
+	if (props.poptartStyle) {
+		poptartStyle = props.poptartStyle === 'default' ? defaultPoptartStyle : props.poptartStyle;
+	}
+	const isInverted = poptartStyle === 'inverted';
+
 	// Dynamic styles
 	const dynamicStyles: React.CSSProperties = {
-		backgroundColor,
-		color: foregroundColor,
+		backgroundColor: isInverted ? config.colors.invertedBackground : backgroundColor,
+		color: isInverted ? backgroundColor : foregroundColor,
 		width,
 		maxWidth: '100%',
 		paddingTop: `${paddingY}px`,
@@ -44,6 +51,8 @@ const Poptart: React.FC<Props> = superProps => {
 		position: 'relative',
 		pointerEvents: 'auto',
 		fontSize,
+		boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+		border: '1px solid rgba(0, 0, 0, 0.1)',
 		animation: `${animation} ${animationDuration}s ease-out`,
 		...config.styleOverrides.poptart,
 	};
@@ -72,10 +81,10 @@ const Poptart: React.FC<Props> = superProps => {
 		<div className="poptart" style={dynamicStyles} onClick={handleClick}>
 			<div className="poptart-inner" style={innerStyle}>
 				{isLoading ? (
-					<Spinner size={iconSize} {...config.spinner} />
+					<Spinner size={iconSize} isInverted={isInverted} {...config.spinner} />
 				) : (
 					<div className="poptart-icon" style={{ width: iconSize }}>
-						<Icon type={type} color={foregroundColor} size={iconSize} />
+						<Icon type={type} color={isInverted ? backgroundColor : foregroundColor} size={iconSize} />
 					</div>
 				)}
 				<span className="poptart-message" style={textStyle}>
@@ -87,6 +96,7 @@ const Poptart: React.FC<Props> = superProps => {
 					poptart={props}
 					height={config.progressBar.height}
 					backgroundColor={backgroundColor}
+					colorOverride={isInverted ? backgroundColor : undefined}
 					config={config}
 				/>
 			) : null}

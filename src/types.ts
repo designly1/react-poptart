@@ -35,7 +35,7 @@ export enum E_PoptartAlign {
 export enum E_PoptartStyle {
 	default = 'Default',
 	filled = 'Filled',
-	outlined = 'Outlined',
+	inverted = 'Inverted',
 }
 
 export enum E_PoptartAnimation {
@@ -63,6 +63,7 @@ export interface I_PoptartPromise {
 export interface I_PoptartProps {
 	message: string;
 	type?: T_PoptartType;
+	poptartStyle?: T_PoptartStyle;
 	duration?: number;
 	width?: string;
 	animation?: T_PoptartAnimation;
@@ -86,6 +87,7 @@ export type T_PoptartColors = {
 	info: string;
 	textLight: string;
 	textDark: string;
+	invertedBackground: string;
 	loading: string;
 };
 
@@ -148,6 +150,7 @@ export interface I_PoptartConfig {
 		alertContainer: React.CSSProperties;
 		alert: React.CSSProperties;
 	};
+	defaultPoptartStyle: T_PoptartStyle;
 	defaultAlign: T_PoptartAlign;
 	defaultType: T_PoptartType;
 	defaultDuration: number;
@@ -175,6 +178,7 @@ export interface I_PoptartUserConfig {
 		alertContainer?: React.CSSProperties;
 		alert?: React.CSSProperties;
 	};
+	defaultPoptartStyle?: T_PoptartStyle;
 	defaultAlign?: T_PoptartAlign;
 	defaultType?: T_PoptartType;
 	defaultDuration?: number;

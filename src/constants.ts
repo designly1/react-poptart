@@ -5,11 +5,12 @@ export const defaultConfig: I_PoptartConfig = {
 	colors: {
 		success: '#229645', // Green color for success notifications
 		error: '#e71b44', // Red color for error notifications
-		warning: '#ffdc2e', // Yellow color for warning notifications
+		warning: '#e9c514', // Yellow color for warning notifications
 		info: '#1FA2FF', // Blue color for info notifications
 		loading: '#4b5155', // Gray color for loading notifications
 		textLight: '#f9f9f9', // Light contrasting color for text
 		textDark: '#171717', // Dark contrasting color for text
+		invertedBackground: '#f6f6f6', // Background color for inverted notifications
 	},
 	// Override styles for various Poptart components
 	styleOverrides: {
@@ -21,6 +22,7 @@ export const defaultConfig: I_PoptartConfig = {
 	},
 	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl'
 	// - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
+	defaultPoptartStyle: 'default', // Default style of the notification (possible values: 'default', 'filled', 'inverted')
 	defaultAlign: 'br',
 	// Default type of notification (possible values: 'success', 'error', 'warning', 'info')
 	defaultType: 'info',

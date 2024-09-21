@@ -4,10 +4,11 @@ import { I_PoptartSpinnerConfig } from './types';
 
 interface Props extends I_PoptartSpinnerConfig {
 	size: number;
+	isInverted: boolean;
 }
 
 export default function Spinner(props: Props) {
-	const { size, strokeWidth, baseColor, accentColor, animationDuration } = props;
+	const { size, strokeWidth, baseColor, accentColor, animationDuration, isInverted } = props;
 
 	return (
 		<div

@@ -26,3 +26,8 @@ Initial release
 ## [1.1.2] - 2024-09-21
 
 - Added feature: promise poptarts that resolve to success or error poptarts
+
+## [1.1.3] - 2024-09-21
+
+- Added feature: inverted poptarts (forground and background swapped)
+  

@@ -9,14 +9,17 @@ interface ProgressBarProps {
 	height: number;
 	backgroundColor: string;
 	config: I_PoptartConfig;
+	colorOverride?: string;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ poptart, height, backgroundColor, config }) => {
-	const color = getContrastColor({
-		backgroundColor,
-		lightColor: config.progressBar.lightColor,
-		darkColor: config.progressBar.darkColor,
-	});
+const ProgressBar: React.FC<ProgressBarProps> = ({ poptart, height, backgroundColor, config, colorOverride }) => {
+	const color =
+		colorOverride ??
+		getContrastColor({
+			backgroundColor,
+			lightColor: config.progressBar.lightColor,
+			darkColor: config.progressBar.darkColor,
+		});
 
 	const [width, setWidth] = useState(100);
 

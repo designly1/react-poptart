@@ -8,7 +8,7 @@
 
 `react-poptart` is an easy-to-use notification and alert system for React apps. It includes features such as multiple animations, auto-dismiss notifications, progress bars, customizable alerts, and flexible theming options.
 
-The bundled size of `react-poptart` is a mere 18kb, much smaller than most other libraries!
+The bundled size of `react-poptart` is a mere 13kb, much smaller than most other libraries!
 
 This documentation will guide you through the setup, usage, and customization of the Poptart Notification and Alert components.
 
@@ -98,16 +98,17 @@ const handleCreatePromisePoptart = () => {
 
 ## Poptart Properties
 
-| Property             | Type             | Default      | Description                                                                                         |
-| -------------------- | ---------------- | ------------ | --------------------------------------------------------------------------------------------------- |
-| `type?`              | string           | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'`                             |
-| `message`            | string           | N/A          | The message displayed inside the notification                                                       |
-| `width?`             | string           | `'450px'`    | Width of the notification                                                                           |
-| `duration?`          | number           | `5000`       | How long the notification stays visible (in milliseconds)                                           |
-| `animation?`         | string           | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc.       |
-| `animationDuration?` | number           | `0.6`        | Animation duration in seconds                                                                       |
-| `onClick?`           | function         | `undefined`  | Callback function for when a Poptart is clicked                                                     |
-| `promise?`           | I_PoptartPromise | `undefined`  | Create a promise poptart that resolves to either an error or success poptart (see promises section) |
+| Property             | Type             | Default      | Description                                                                                           |
+| -------------------- | ---------------- | ------------ | ----------------------------------------------------------------------------------------------------- |
+| `type?`              | string           | `'info'`     | Type of the notification: `'info'`, `'success'`, `'error'`, `'warning'`                               |
+| `message`            | string           | N/A          | The message displayed inside the notification                                                         |
+| `width?`             | string           | `'450px'`    | Width of the notification                                                                             |
+| `duration?`          | number           | `5000`       | How long the notification stays visible (in milliseconds)                                             |
+| `poptartStyle`       | string           | `'default'`  | Style of poptart container. Options: `'default'`, `'filled'`, or `'inverted'`. Default is `'filled'`. |
+| `animation?`         | string           | `'bounceIn'` | Animation for the notification. Available options are `'fade'`, `'slide'`, `'bounceIn'`, etc.         |
+| `animationDuration?` | number           | `0.6`        | Animation duration in seconds                                                                         |
+| `onClick?`           | function         | `undefined`  | Callback function for when a Poptart is clicked                                                       |
+| `promise?`           | I_PoptartPromise | `undefined`  | Create a promise poptart that resolves to either an error or success poptart (see promises section)   |
 
 ## Alerts Usage
 
@@ -261,11 +262,12 @@ export const defaultConfig: I_PoptartConfig = {
 	colors: {
 		success: '#229645', // Green color for success notifications
 		error: '#e71b44', // Red color for error notifications
-		warning: '#ffdc2e', // Yellow color for warning notifications
+		warning: '#e9c514', // Yellow color for warning notifications
 		info: '#1FA2FF', // Blue color for info notifications
 		loading: '#4b5155', // Gray color for loading notifications
 		textLight: '#f9f9f9', // Light contrasting color for text
 		textDark: '#171717', // Dark contrasting color for text
+		invertedBackground: '#f6f6f6', // Background color for inverted notifications
 	},
 	// Override styles for various Poptart components
 	styleOverrides: {
@@ -277,6 +279,7 @@ export const defaultConfig: I_PoptartConfig = {
 	},
 	// Default alignment of Poptarts (possible values: 'tl' - top-left, 'tc' - top-center, 'tr' - top-right, 'bl'
 	// - bottom-left, 'bc' - bottom-center, 'br' - bottom-right)
+	defaultPoptartStyle: 'default', // Default style of the notification (possible values: 'default', 'filled', 'inverted')
 	defaultAlign: 'br',
 	// Default type of notification (possible values: 'success', 'error', 'warning', 'info')
 	defaultType: 'info',
@@ -346,7 +349,7 @@ export const defaultConfig: I_PoptartConfig = {
 	},
 	// Default settings for the spinner component
 	spinner: {
-		strokeWidth: 8, // Thickness of the spinner ring
+		strokeWidth: 7, // Thickness of the spinner ring
 		baseColor: '#f3f3f3', // Background color of the spinner ring
 		accentColor: '#bbbbbb', // Accent color of the spinner ring
 		animationDuration: 1, // Duration of the spinner animation (in seconds)
