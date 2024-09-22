@@ -46,7 +46,7 @@ export default function Icon(props: Props) {
 					/>
 				</svg>
 			);
-		default:
+		default: // info
 			return (
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={`${size}px`} height={`${size}px`}>
 					<path

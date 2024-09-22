@@ -2,7 +2,7 @@ export function getContrastColor({
 	backgroundColor,
 	lightColor,
 	darkColor,
-	threshold = 0.32,
+	threshold = 0.38,
 }: {
 	backgroundColor: string;
 	lightColor: string;

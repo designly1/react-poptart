@@ -67,6 +67,7 @@ const Poptart: React.FC<Props> = superProps => {
 		wordBreak: 'break-word',
 		hyphens: 'auto',
 		overflowWrap: 'break-word',
+		textShadow: isInverted ? `2px 2px 2px rgba(0, 0, 0, 0.1)` : `2px 2px 2px rgba(0, 0, 0, 0.3)`,
 		animation: isLoading ? 'beacon 1s infinite' : 'none',
 	};
 

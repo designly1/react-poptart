@@ -3,12 +3,12 @@ import { I_PoptartConfig } from '.';
 export const defaultConfig: I_PoptartConfig = {
 	// Default colors for the Poptart notifications
 	colors: {
-		success: '#229645', // Green color for success notifications
-		error: '#e71b44', // Red color for error notifications
-		warning: '#e9c514', // Yellow color for warning notifications
-		info: '#1FA2FF', // Blue color for info notifications
+		success: '#07bc0c', // Green color for success notifications
+		error: '#e74c3c', // Red color for error notifications
+		warning: '#f1c40f', // Yellow color for warning notifications
+		info: '#3498db', // Blue color for info notifications
 		loading: '#4b5155', // Gray color for loading notifications
-		textLight: '#f9f9f9', // Light contrasting color for text
+		textLight: '#fcfcfc', // Light contrasting color for text
 		textDark: '#171717', // Dark contrasting color for text
 		invertedBackground: '#f6f6f6', // Background color for inverted notifications
 	},
