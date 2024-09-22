@@ -7,7 +7,7 @@ export interface I_PoptartContext {
 	poptarts: I_PoptartItem[];
 	config: I_PoptartConfig;
 	currentAlert: I_AlertProps | null;
-	push: (props: I_PoptartProps) => void;
+	push: (props: I_PoptartProps) => string;
 	promise: (message: string, promise: I_PoptartPromise, overrides?: Partial<I_PoptartProps>) => string;
 	dismiss: (id: string) => void;
 	alert: (props: I_AlertProps) => void;

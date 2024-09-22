@@ -31,3 +31,6 @@ Initial release
 
 - Added feature: inverted poptarts (forground and background swapped)
   
+## [1.2.2] - 2024-09-21
+
+- Bug fix: incorrect return type for poptart.push()
