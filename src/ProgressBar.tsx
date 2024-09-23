@@ -23,7 +23,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ poptart, height, backgroundCo
 
 	const [width, setWidth] = useState(100);
 
-	const duration = poptart.duration !== undefined ? poptart.duration : config.defaultDuration;
+	const duration = poptart.duration || config.defaultDuration;
 
 	useEffect(() => {
 		setTimeout(() => {
