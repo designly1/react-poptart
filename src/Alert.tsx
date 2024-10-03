@@ -89,11 +89,11 @@ export default function Alert(props: Props) {
 			zIndex: FG_Z_INDEX,
 		},
 		confirmButton: {
-			backgroundColor: config.alerts.defaultConfirmButtonColor,
+			backgroundColor: alert.confirmButtonBackgroundColor || config.alerts.defaultConfirmButtonColor,
 			color: confirmButtonColor,
 		},
 		cancelButton: {
-			backgroundColor: config.alerts.defaultCancelButtonColor,
+			backgroundColor: alert.cancelButtonBackgroundColor || config.alerts.defaultCancelButtonColor,
 			color: cancelButtonColor,
 		},
 		background: {
@@ -197,16 +197,19 @@ export default function Alert(props: Props) {
 							style={{ ...styles.buttonBase, ...styles.confirmButton }}
 							onClick={handleConfirm}
 						>
-							{config.alerts.defaultConfirmButtonLabel}
+							{alert.confirmButtonLabel || config.alerts.defaultConfirmButtonLabel}
 						</button>
 					) : null}
-					{showCancelButton || (alert?.input && alert.showCancelButton !== false) ? (
+					{showCancelButton ||
+					!!alert.cancelButtonLabel ||
+					!!alert.cancelButtonCallback ||
+					(alert?.input && alert.showCancelButton !== false) ? (
 						<button
 							className="poptart-cancel-button"
 							style={{ ...styles.buttonBase, ...styles.cancelButton }}
 							onClick={handleCancel}
 						>
-							{config.alerts.defaultCancelButtonLabel}
+							{alert.cancelButtonLabel || config.alerts.defaultCancelButtonLabel}
 						</button>
 					) : null}
 					{customButtons.map((button, index) => (

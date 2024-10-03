@@ -38,3 +38,8 @@ Initial release
 ## [1.2.3] - 2024-09-22
 
 - Color tweaks, contrast adjustments
+
+## [1.2.4] - 2024-10-03
+
+- Bug fix: fixed custom alert confirm and cancel button labels and colors
+  

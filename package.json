@@ -1,7 +1,7 @@
 {
   "name": "react-poptart",
   "description": "A simple and elegant notification toaster for React.js",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "homepage": "https://react-poptart.vercel.app",
   "repository": {
     "type": "git",
