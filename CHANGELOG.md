@@ -43,3 +43,6 @@ Initial release
 
 - Bug fix: fixed custom alert confirm and cancel button labels and colors
   
+## [1.2.5] - 2025-02-21
+
+- Support for React 19

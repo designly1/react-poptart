@@ -396,7 +396,27 @@ You can override the styles of both notifications and alerts by providing a `sty
 
 ## Development
 
-To develop `react-poptart`, simply clone and install dependencies and then run `npm run dev`. Run `npm run build` to build and `npm run test` to run all tests.
+To develop `react-poptart`, simply clone and install dependencies and then run `pnpm run dev`.
+
+To test in a React development project, in the `react-poptart` root directory run:
+
+```
+pnpm link --global
+```
+
+Then in your React project root, run:
+
+```
+pnpm link react-poptart
+```
+
+When you're done with development, simply run:
+
+```
+pnpm unlink react-poptart
+```
+
+Run `pnpm run build` to build and `pnpm run test` to run all tests.
 
 ## Issues
 
